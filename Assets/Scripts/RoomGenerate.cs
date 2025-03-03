@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
+
 
 public class RoomGenerate : MonoBehaviour
 {
@@ -297,9 +298,13 @@ public class RoomGenerate : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            tilemap.ClearAllTiles();
+            /*tilemap.ClearAllTiles();
             tileCount = 0;
-            InitializeRoomGrid();
+            SpawnPlayer();
+            InitializeRoomGrid();*/
+
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.buildIndex);
         }
     }
 }
