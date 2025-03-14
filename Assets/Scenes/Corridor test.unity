@@ -218,7 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652439996}
-  - component: {fileID: 652439995}
+  - component: {fileID: 652439999}
   - component: {fileID: 652439998}
   - component: {fileID: 652439997}
   m_Layer: 0
@@ -228,49 +228,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &652439995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652439993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Priority:
-    Enabled: 0
-    m_Value: 0
-  OutputChannel: 1
-  StandbyUpdate: 2
-  m_StreamingVersion: 20241001
-  m_LegacyPriority: 0
-  Target:
-    TrackingTarget: {fileID: 0}
-    LookAtTarget: {fileID: 0}
-    CustomLookAtTarget: 0
-  Lens:
-    FieldOfView: 60
-    OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
-    Dutch: 0
-    ModeOverride: 0
-    PhysicalProperties:
-      GateFit: 2
-      SensorSize: {x: 21.946, y: 16.002}
-      LensShift: {x: 0, y: 0}
-      FocusDistance: 10
-      Iso: 200
-      ShutterSpeed: 0.005
-      Aperture: 16
-      BladeCount: 5
-      Curvature: {x: 2, y: 11}
-      BarrelClipping: 0.25
-      Anamorphism: 0
-  BlendHint: 0
 --- !u!4 &652439996
 Transform:
   m_ObjectHideFlags: 0
@@ -337,6 +294,49 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &652439999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652439993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 40
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
 --- !u!1 &751451580
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +378,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 852720689}
-  - component: {fileID: 852720688}
   - component: {fileID: 852720690}
   m_Layer: 0
   m_Name: Grid
@@ -387,33 +386,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &852720688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852720687}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea095e895c6b6794aad37c9be9149c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3350632988203120858, guid: 6f8ffe830cd5dd94fa3af868cf725ea4, type: 3}
-  playerRoomSpawn: {fileID: 3350632988203120858, guid: 4fcf41737b4cf774fa8c44bb3f58830a, type: 3}
-  objprefabs:
-  - {fileID: 3350632988203120858, guid: 7d85c48bfc51edd43a63cfac76e6ca97, type: 3}
-  - {fileID: 3350632988203120858, guid: 7d85c48bfc51edd43a63cfac76e6ca97, type: 3}
-  - {fileID: 3350632988203120858, guid: 7d85c48bfc51edd43a63cfac76e6ca97, type: 3}
-  gridArraySize: 0
-  gridNodeCountX: 50
-  gridNodeCountY: 50
-  nodeWidth: 1
-  nodeHeight: 1
-  spacingx: 0
-  spacingy: 0
-  numeberOfNodesToSpawn: 420
-  numeberOfPlayerRoomNodesToSpawn: 1
 --- !u!4 &852720689
 Transform:
   m_ObjectHideFlags: 0
@@ -447,8 +419,8 @@ MonoBehaviour:
   floorTile: {fileID: 11400000, guid: 103187d5401ef6c49988b651db210376, type: 2}
   emptyTile: {fileID: 11400000, guid: aaf42012201ec264ca7fee52daf5f62d, type: 2}
   player: {fileID: 2387877841609378110, guid: 37c47fcd530b71c42932da1cf7cb5b5d, type: 3}
-  width: 120
-  height: 120
+  width: 100
+  height: 100
   maxRooms: 5
   tileCount: 0
   fillPercent: 0.4
@@ -674,11 +646,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -719,7 +691,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1587050348}
   - component: {fileID: 1587050347}
-  - component: {fileID: 1587050346}
   m_Layer: 0
   m_Name: Grid (1)
   m_TagString: Untagged
@@ -727,30 +698,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1587050346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587050345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5939c5e483fb8141ac6c3113e4ba488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnLocation: {x: 1, y: 1, z: 1}
-  tilemap: {fileID: 1908165156}
-  wallTile: {fileID: 11400000, guid: c631720323203e64da31f48724b8a09c, type: 2}
-  floorTile: {fileID: 0}
-  emptyTile: {fileID: 0}
-  player: {fileID: 0}
-  width: 118
-  height: 118
-  maxRooms: 5
-  tileCount: 0
-  fillPercent: 0.4
-  waitTime: 0
 --- !u!114 &1587050347
 MonoBehaviour:
   m_ObjectHideFlags: 0

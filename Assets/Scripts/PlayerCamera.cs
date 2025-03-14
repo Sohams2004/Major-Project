@@ -10,11 +10,15 @@ public class PlayerCamera : MonoBehaviour
         Camera = FindObjectOfType<CinemachineCamera>();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player);
-        if (player != null)
+        if(player != null)
         {
-            Camera.Follow = player.transform;
-            Camera.LookAt = player.transform;
+            SetCameraTarget(player.transform);
         }
+    }
+
+    public void SetCameraTarget(Transform target)
+    {
+        Camera.Follow = target;
+        Camera.LookAt = target;
     }
 }

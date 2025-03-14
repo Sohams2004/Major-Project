@@ -43,7 +43,7 @@ public class RoomGenerate : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} - Start called");
         InitializeRoomGrid();
-        SpawnPlayer();
+        print(TargetTileCount());
     }
 
     Vector2 GetDirection()
@@ -68,6 +68,11 @@ public class RoomGenerate : MonoBehaviour
     {
         return new Vector3Int(grid.GetLength(0) / 2, grid.GetLength(1) / 2, 0);
     }
+
+    int TargetTileCount()
+    {
+        return (int)(grid.Length * fillPercent);
+    }  
 
     void InitializeRoomGrid()
     {
@@ -148,6 +153,9 @@ public class RoomGenerate : MonoBehaviour
 
             AddTilesToEmptyArea();
         }
+
+        yield return new WaitForSeconds(1);
+        LoadPlayer();
     }
 
     void ToRemove()
@@ -255,6 +263,7 @@ public class RoomGenerate : MonoBehaviour
             }
         }
 
+        AreAllTilesSpawned();
     }
 
     void AddTilesToEmptyArea()
@@ -290,7 +299,32 @@ public class RoomGenerate : MonoBehaviour
         if(floorTiles.Count > 0)
         {
             Vector3Int randomTile = floorTiles[Random.Range(0, floorTiles.Count)];
-            Instantiate(player, tilemap.CellToWorld(randomTile) + tilemap.tileAnchor, Quaternion.identity);
+            GameObject playerInstance = Instantiate(player, tilemap.CellToWorld(randomTile) + tilemap.tileAnchor, Quaternion.identity);
+
+            PlayerCamera playerCamera = FindObjectOfType<PlayerCamera>();
+            if (playerCamera != null)
+            {
+                playerCamera.SetCameraTarget(playerInstance.transform);
+            }
+        }
+    }
+
+    bool AreAllTilesSpawned()
+    {
+        if(tileCount > TargetTileCount())
+        {
+            Debug.Log("All tiles spawned");
+            return true;
+        }
+        return false;
+    }
+
+    void LoadPlayer()
+    {
+        if (AreAllTilesSpawned())
+        {
+            //Debug.Log("All tiles spawned");
+            SpawnPlayer();
         }
     }
 
