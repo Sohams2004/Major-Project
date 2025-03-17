@@ -300,12 +300,6 @@ public class RoomGenerate : MonoBehaviour
         {
             Vector3Int randomTile = floorTiles[Random.Range(0, floorTiles.Count)];
             GameObject playerInstance = Instantiate(player, tilemap.CellToWorld(randomTile) + tilemap.tileAnchor, Quaternion.identity);
-
-            PlayerCamera playerCamera = FindObjectOfType<PlayerCamera>();
-            if (playerCamera != null)
-            {
-                playerCamera.SetCameraTarget(playerInstance.transform);
-            }
         }
     }
 

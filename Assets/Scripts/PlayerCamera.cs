@@ -1,24 +1,24 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public CinemachineCamera Camera;
+    public CinemachineCamera camera;
+    GameObject player;
 
-    private void Awake()
+    private void Start()
     {
-        Camera = FindObjectOfType<CinemachineCamera>();
+        camera = FindObjectOfType<CinemachineCamera>();
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if(player != null)
-        {
-            SetCameraTarget(player.transform);
-        }
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        SetCameraTarget(player.transform);
     }
 
     public void SetCameraTarget(Transform target)
     {
-        Camera.Follow = target;
-        Camera.LookAt = target;
+        camera.Follow = target;
+        camera.LookAt = target;
     }
 }
