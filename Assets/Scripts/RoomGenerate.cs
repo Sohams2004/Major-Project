@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 
 public class RoomGenerate : MonoBehaviour
@@ -36,14 +37,20 @@ public class RoomGenerate : MonoBehaviour
 
     public int tileCount;
 
+    public int iterations;
+    int maxIterations = 100000;
+
     public float fillPercent;
     public float waitTime;
+    public float loadingPercent;
 
     private void Start()
     {
         Debug.Log($"{gameObject.name} - Start called");
         InitializeRoomGrid();
         print(TargetTileCount());
+
+        fillPercent = Mathf.Clamp(fillPercent, 0.1f, 0.9f);
     }
 
     Vector2 GetDirection()
@@ -117,8 +124,9 @@ public class RoomGenerate : MonoBehaviour
     IEnumerator GenerateFloor()
     {
         Debug.Log($"{gameObject.name} - Generating Floor");
-        while ((float)tileCount / (float)grid.Length < fillPercent)
+        while ((float)tileCount / (float)grid.Length < fillPercent && iterations < maxIterations)
         {
+            iterations++;
             bool isRoomPlaced = false;
             foreach (RoomObject room in rooms)
             {
@@ -322,6 +330,12 @@ public class RoomGenerate : MonoBehaviour
         }
     }
 
+    void LoadingPercentage()
+    {
+        loadingPercent = ((float)tileCount / (float)TargetTileCount()) * 100;
+        Mathf.Round(loadingPercent);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -334,5 +348,7 @@ public class RoomGenerate : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.buildIndex);
         }
+
+        LoadingPercentage();
     }
 }

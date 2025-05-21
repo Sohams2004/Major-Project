@@ -13,7 +13,8 @@ public class NextScene : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Portal"))
         {
-            SceneChange();
+            gameObject.SetActive(false);
+            Invoke("SceneChange", 2f);
         }
     }
 }

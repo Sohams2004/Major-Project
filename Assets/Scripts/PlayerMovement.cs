@@ -18,8 +18,29 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = movement * moveSpeed;
     }
 
+    void Sprint()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Sprinting");
+            moveSpeed += 2;
+        }
+
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Debug.Log("Not sprinting");
+            moveSpeed -= 2;
+        }
+
+    }
+
     private void FixedUpdate()
     {
-        Movement();
+        Movement();        
+    }
+
+    private void Update()
+    {
+        Sprint();
     }
 }
