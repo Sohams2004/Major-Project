@@ -562,7 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertRange: 7
   chaseRange: 5
-  attackRange: 1
+  attackRange: 0.24
   speed: 2
   player: {fileID: 1380244077}
   patrolPoints:

@@ -11,9 +11,28 @@ public class MoveProjectile : MonoBehaviour
         projectileRb = GetComponent<Rigidbody2D>();
     }
 
-    public void MoveObject(Vector2 shootDirection)
+    public void MoveObject()
     {
-        Vector2 direction = shootDirection.normalized;
-        projectileRb.linearVelocity = direction * speed;
+        projectileRb.linearVelocity = transform.up * speed;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Projectile hit an enemy");
+            Destroy(other.gameObject); 
+            Destroy(gameObject); 
+        }
+        else if (other.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("Projectile hit a wall");
+            Destroy(gameObject); 
+        }
+    }
+
+    private void Update()
+    {
+        MoveObject();
     }
 }

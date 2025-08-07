@@ -85,7 +85,7 @@ public class Astar : MonoBehaviour
             }
 
             Vector2Int bottomNode = currentNode.gridPos + Vector2Int.down;
-            if (bottomNode.y >= 0)
+            if (bottomNode.y > 0)
             {
                 A_Node bottomNodeNode = grid.GetNode(bottomNode);
                 neighbours.Add(grid.GetNode(bottomNode));
@@ -99,7 +99,7 @@ public class Astar : MonoBehaviour
             }
 
             Vector2Int leftNode = currentNode.gridPos + Vector2Int.left;
-            if (leftNode.x >= 0)
+            if (leftNode.x > 0)
             {
                 A_Node leftNodeNode = grid.GetNode(leftNode);
                 neighbours.Add(grid.GetNode(leftNode));
