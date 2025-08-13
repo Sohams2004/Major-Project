@@ -1489,7 +1489,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2464b62e5cedc4b44b18b17972972f07, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4372,9 +4372,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2297603201749895108, guid: 37c47fcd530b71c42932da1cf7cb5b5d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 1208836717436891913, guid: 37c47fcd530b71c42932da1cf7cb5b5d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2387877841609378110, guid: 37c47fcd530b71c42932da1cf7cb5b5d, type: 3}
       propertyPath: m_Name
