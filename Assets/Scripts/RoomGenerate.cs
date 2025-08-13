@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using System;
 
 
 public class RoomGenerate : MonoBehaviour
@@ -43,6 +45,11 @@ public class RoomGenerate : MonoBehaviour
     public float fillPercent;
     public float waitTime;
     public float loadingPercent;
+    
+    public event Action OnLevelGenerated;
+    public List<Vector3Int> floorTiles = new List<Vector3Int>();
+    
+    [SerializeField] EnemySpawn enemySpawn;
 
     private void Start()
     {
@@ -51,6 +58,8 @@ public class RoomGenerate : MonoBehaviour
         print(TargetTileCount());
 
         fillPercent = Mathf.Clamp(fillPercent, 0.1f, 0.9f);
+        
+        enemySpawn = FindObjectOfType<EnemySpawn>();
     }
 
     Vector2 GetDirection()
@@ -325,8 +334,12 @@ public class RoomGenerate : MonoBehaviour
     {
         if (AreAllTilesSpawned())
         {
+            AddFloorTilesInAList();
             //Debug.Log("All tiles spawned");
             SpawnPlayer();
+            
+            OnLevelGenerated?.Invoke();
+            enemySpawn.StartSpawingEnemy();
         }
     }
 
@@ -336,6 +349,24 @@ public class RoomGenerate : MonoBehaviour
         Mathf.Round(loadingPercent);
     }
 
+    void AddFloorTilesInAList()
+    {
+        floorTiles.Clear();
+        for (int i = 0; i < grid.GetLength(0); i++)
+        {
+            for (int j = 0; j < grid.GetLength(1); j++)
+            {
+                if (grid[i, j] == GridType.Floor)
+                {
+                    floorTiles.Add(new Vector3Int(i, j, 0));
+                }
+            }
+        }
+    }
+
+    public IReadOnlyList<Vector3Int> GetFloorTiles() => floorTiles;
+    
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

@@ -5,10 +5,16 @@ public class MoveProjectile : MonoBehaviour
 {
     private Rigidbody2D projectileRb;
     public float speed = 10f;
+    
+    int wallLayer;
+    int enemyLayer;
 
     private void Start()
     {
         projectileRb = GetComponent<Rigidbody2D>();
+        
+        wallLayer = LayerMask.NameToLayer("Wall");
+        enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     public void MoveObject()
@@ -16,15 +22,18 @@ public class MoveProjectile : MonoBehaviour
         projectileRb.linearVelocity = transform.up * speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if(other.isTrigger)
+            return; 
+        
+        if (other.gameObject.layer == enemyLayer)
         {
             Debug.Log("Projectile hit an enemy");
-            Destroy(other.gameObject); 
+            Destroy(other.gameObject);
             Destroy(gameObject); 
         }
-        else if (other.gameObject.CompareTag("Wall"))
+        else if (other.gameObject.layer == wallLayer)
         {
             Debug.Log("Projectile hit a wall");
             Destroy(gameObject); 

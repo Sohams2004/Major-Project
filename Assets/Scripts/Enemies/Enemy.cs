@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Enemy collided with Player");
             Destroy(other.gameObject);
+            Time.timeScale = 0;
         }
     }
 }
