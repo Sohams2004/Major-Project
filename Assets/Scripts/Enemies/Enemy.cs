@@ -4,6 +4,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Transform target;
+    public float enemyHealth = 10f;
     public float enemySpeed = 2f;
     public float rotateSpeed;
 

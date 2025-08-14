@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] Rigidbody2D rb;
-
+    
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -16,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(x, y);
         rb.linearVelocity = movement * moveSpeed;
+
+        if (movement != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90f;
+            rb.rotation = angle;
+        }
     }
 
     void Sprint()
