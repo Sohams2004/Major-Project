@@ -5,6 +5,7 @@ public class MoveProjectile : MonoBehaviour
 {
     private Rigidbody2D projectileRb;
     public float speed = 10f;
+    [SerializeField] float damage = 10f;
     
     int wallLayer;
     int enemyLayer;
@@ -30,7 +31,11 @@ public class MoveProjectile : MonoBehaviour
         if (other.gameObject.layer == enemyLayer)
         {
             Debug.Log("Projectile hit an enemy");
-            Destroy(other.gameObject);
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.enemyHealth -= damage;
+            }
             Destroy(gameObject); 
         }
         else if (other.gameObject.layer == wallLayer)

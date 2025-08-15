@@ -72,6 +72,7 @@ public class Shoot : MonoBehaviour
     {
         if (other.gameObject.layer == ammoLayer && isCollectable)
         {
+            Debug.Log("destoryeddddddddddddddddd");
             currentAmmo++;
             currentAmmoText.text = currentAmmo.ToString();
             Destroy(other.gameObject);

@@ -162,7 +162,6 @@ GameObject:
   - component: {fileID: 6753980419820997052}
   - component: {fileID: 6325231055286333594}
   - component: {fileID: 6199151925694627457}
-  - component: {fileID: 2123573539870067063}
   - component: {fileID: 5354458380299560121}
   m_Layer: 0
   m_Name: MeleeWeaponPrefab
@@ -263,18 +262,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2123573539870067063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963961739402456773}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4bd3513ddc52848a2a3680e191e6c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &5354458380299560121
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -346,6 +333,7 @@ GameObject:
   - component: {fileID: 2297603201749895108}
   - component: {fileID: 8352658369215072512}
   - component: {fileID: 4463004267220301397}
+  - component: {fileID: 914021008486931367}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -627,6 +615,20 @@ MonoBehaviour:
   ammoUI: {fileID: 0}
   meleeUI: {fileID: 0}
   meleeWeaponPrefab: {fileID: 0}
+--- !u!114 &914021008486931367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2387877841609378110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441a673fa5521944e8b97ef4ac84c6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!1 &5321574938475395268
 GameObject:
   m_ObjectHideFlags: 0

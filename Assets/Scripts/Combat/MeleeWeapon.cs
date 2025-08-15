@@ -19,6 +19,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (other.gameObject.layer == enemyLayer)
         {
+            Debug.Log("destoryeddddddddddddddddd");
             Destroy(other.gameObject);
         }
     }
