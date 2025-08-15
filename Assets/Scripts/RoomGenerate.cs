@@ -50,6 +50,7 @@ public class RoomGenerate : MonoBehaviour
     public List<Vector3Int> floorTiles = new List<Vector3Int>();
     
     [SerializeField] EnemySpawn enemySpawn;
+    [SerializeField] Loot loot;
 
     private void Start()
     {
@@ -60,6 +61,7 @@ public class RoomGenerate : MonoBehaviour
         fillPercent = Mathf.Clamp(fillPercent, 0.1f, 0.9f);
         
         enemySpawn = FindObjectOfType<EnemySpawn>();
+        loot = FindObjectOfType<Loot>();
     }
 
     Vector2 GetDirection()
@@ -340,6 +342,7 @@ public class RoomGenerate : MonoBehaviour
             
             OnLevelGenerated?.Invoke();
             enemySpawn.StartSpawingEnemy();
+            loot.StartSpawnLoot();
         }
     }
 

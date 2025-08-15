@@ -39,7 +39,6 @@ public class Shoot : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.Auto);
     }
     
 
@@ -78,8 +77,18 @@ public class Shoot : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    
-    
+
+    void OnEnable()
+    {
+        Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.Auto);
+    }
+
+    private void OnDisable()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+
     void Update()
     {
         ShootProjectile();

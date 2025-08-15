@@ -5,7 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] Rigidbody2D rb;
-    
+
+    [SerializeField] private float facingDirection;
     
     private void Start()
     {
@@ -19,11 +20,35 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movement = new Vector2(x, y);
         rb.linearVelocity = movement * moveSpeed;
 
-        if (movement != Vector2.zero)
+        /*if (movement != Vector2.zero)
         {
             float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90f;
             rb.rotation = angle;
+        }*/
+        
+        if(x > 0)
+        {
+            facingDirection = 1f;
         }
+        else if(x < 0)
+        {
+            facingDirection = -1f; 
+        }
+        else
+        {
+            facingDirection = 0f; 
+        }
+
+        if (facingDirection == 1)
+        {
+            transform.eulerAngles = new Vector3(0, 0, -90f);
+        }
+        
+        else if (facingDirection == -1)
+        {
+            transform.eulerAngles = new Vector3(0, 180, -90f);
+        }
+        
     }
 
     void Sprint()

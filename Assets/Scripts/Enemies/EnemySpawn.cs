@@ -6,18 +6,16 @@ using Random = UnityEngine.Random;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
-
     public GameObject player;
-    //public Transform[] spawnPoints;
     public float spawnInterval = 2f;
     public float cameraMargin;
     public float minPlayerDistance;
     public Camera cam;
 
     private float nextSpawnTime = 0f;
-    private int currentEnemyCount = 0;
+    [SerializeField] int currentEnemyCount = 0;
 
-    [SerializeField] bool isSpawning = true;
+    [SerializeField] bool isSpawningEnemies = true;
     
     RoomGenerate roomGenerate;
 
@@ -46,7 +44,7 @@ public class EnemySpawn : MonoBehaviour
     {
         Debug.Log("Coroutine started");
         var wait = new WaitForSeconds(spawnInterval);
-        while (isSpawning)
+        while (isSpawningEnemies)
         {
             Debug.Log("Spawning enemy");
             SpawnOnFloor();
@@ -116,9 +114,6 @@ public class EnemySpawn : MonoBehaviour
 
     void Update()
     {
-        /*if (roomGenerate.loadingPercent >= 100)
-        {
-            StartCoroutine(SpawnEnemy());
-        }*/
+        
     }
 }

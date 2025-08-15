@@ -51,6 +51,8 @@ public class Enemy : MonoBehaviour
             //RotateTowardsPlayer();
             MoveTowardsPlayer();
         }
+        
+        Die();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -75,6 +77,15 @@ public class Enemy : MonoBehaviour
         }
         GameObject droppedLoot = Instantiate(loot[randomLoot], transform.position, Quaternion.identity);
         Debug.Log($"Dropped loot: {droppedLoot.name}");
+    }
+
+    void Die()
+    {
+        if(enemyHealth <= 0)
+        {
+            Debug.Log("Enemy died");
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()
