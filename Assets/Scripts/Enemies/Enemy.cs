@@ -67,11 +67,12 @@ public class Enemy : MonoBehaviour
     {
         int randomLoot = Random.Range(0, loot.Length);
 
-        for (int i = 0; i < loot.Length; i++)
+        if(loot == null || loot.Length == 0)
         {
-            GameObject droppedLoot = Instantiate(loot[randomLoot], transform.position, Quaternion.identity);
-            Debug.Log($"Dropped loot: {droppedLoot.name}");
+            return;
         }
+        GameObject droppedLoot = Instantiate(loot[randomLoot], transform.position, Quaternion.identity);
+        Debug.Log($"Dropped loot: {droppedLoot.name}");
     }
 
     private void OnDestroy()

@@ -14,10 +14,14 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float reloadTime = 1.5f;
     [SerializeField] private bool autoReload = true;
     [SerializeField] private bool isReloading = false;
+    [SerializeField] private bool isCollectable;
+
+    private int ammoLayer;
 
     private void Start()
     {
         currentAmmo = magazineSize;
+        ammoLayer = LayerMask.NameToLayer("Ammo");
     }
 
     void ShootProjectile()
@@ -35,6 +39,22 @@ public class Shoot : MonoBehaviour
             nextFireTime = Time.time + 1f / fireRate;
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             currentAmmo--;
+        }
+
+        if (currentAmmo >= magazineSize)
+        {
+            isCollectable = false;
+        }
+        else
+            isCollectable = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == ammoLayer && isCollectable)
+        {
+            currentAmmo++;
+            Destroy(other.gameObject);
         }
     }
     
