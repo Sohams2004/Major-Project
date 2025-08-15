@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shoot : MonoBehaviour
 {
@@ -17,12 +19,29 @@ public class Shoot : MonoBehaviour
     [SerializeField] private bool isCollectable;
 
     private int ammoLayer;
+    
+    [SerializeField] TextMeshProUGUI currentAmmoText;
+    [SerializeField] TextMeshProUGUI magazineSizeText;
+
+    [SerializeField] private Texture2D crosshair;
+
 
     private void Start()
     {
         currentAmmo = magazineSize;
         ammoLayer = LayerMask.NameToLayer("Ammo");
+        
+        currentAmmoText = GameObject.Find("CurrentAmmoText").GetComponent<TextMeshProUGUI>();
+        magazineSizeText = GameObject.Find("MagazineSizeText").GetComponent<TextMeshProUGUI>();
+        
+        currentAmmoText.text = currentAmmo.ToString();
+        magazineSizeText.text = "/ " + magazineSize.ToString();
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.Auto);
     }
+    
 
     void ShootProjectile()
     {
@@ -39,6 +58,7 @@ public class Shoot : MonoBehaviour
             nextFireTime = Time.time + 1f / fireRate;
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             currentAmmo--;
+            currentAmmoText.text = currentAmmo.ToString();
         }
 
         if (currentAmmo >= magazineSize)
@@ -54,9 +74,11 @@ public class Shoot : MonoBehaviour
         if (other.gameObject.layer == ammoLayer && isCollectable)
         {
             currentAmmo++;
+            currentAmmoText.text = currentAmmo.ToString();
             Destroy(other.gameObject);
         }
     }
+    
     
     void Update()
     {

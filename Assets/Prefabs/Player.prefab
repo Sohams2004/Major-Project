@@ -402,6 +402,10 @@ MonoBehaviour:
   reloadTime: 1.5
   autoReload: 1
   isReloading: 0
+  isCollectable: 0
+  currentAmmoText: {fileID: 2873556705954929125, guid: 5d25cdd5db32bdb44bbfb2b126f8b25c, type: 3}
+  magazineSizeText: {fileID: 712955782419154005, guid: 2e16b6dcd6c9e5b4bb08ebebfbeeea57, type: 3}
+  crosshair: {fileID: 2800000, guid: dd971aad47f380f41bc1c36fe9315e32, type: 3}
 --- !u!114 &8352658369215072512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeAttack: {fileID: 0}
   shoot: {fileID: 0}
+  ammoUI: {fileID: 0}
 --- !u!1 &6467173492208020036
 GameObject:
   m_ObjectHideFlags: 0

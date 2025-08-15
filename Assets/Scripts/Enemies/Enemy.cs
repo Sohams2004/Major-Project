@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            RotateTowardsPlayer();
+            //RotateTowardsPlayer();
             MoveTowardsPlayer();
         }
     }
@@ -62,6 +62,8 @@ public class Enemy : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+    
+    
 
     void DropLoot()
     {
