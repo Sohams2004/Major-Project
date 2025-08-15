@@ -28,6 +28,7 @@ public class MeleeAttack : MonoBehaviour
     {
         if (isAttacking)
         {
+            Debug.Log("Melee attack initiated");
             meleeWeaponPrefab.SetActive(true);
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Enemy : MonoBehaviour
     public float rotateSpeed;
 
     private Rigidbody2D enemyRb;
+
+    [SerializeField] private GameObject[] loot;
 
     private void Start()
     {
@@ -57,6 +60,26 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy collided with Player");
             Destroy(other.gameObject);
             Time.timeScale = 0;
+        }
+    }
+
+    void DropLoot()
+    {
+        int randomLoot = Random.Range(0, loot.Length);
+
+        for (int i = 0; i < loot.Length; i++)
+        {
+            GameObject droppedLoot = Instantiate(loot[randomLoot], transform.position, Quaternion.identity);
+            Debug.Log($"Dropped loot: {droppedLoot.name}");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Enemy destroyed");
+        if (gameObject.scene.isLoaded)
+        {
+            DropLoot();
         }
     }
 }

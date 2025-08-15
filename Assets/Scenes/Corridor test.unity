@@ -613,6 +613,7 @@ MonoBehaviour:
   waitTime: 0
   loadingPercent: 0
   floorTiles: []
+  enemySpawn: {fileID: 0}
 --- !u!1 &926485905
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab:
   - {fileID: 1327629409663323722, guid: 6ea91c1e8888e2346b8be8d8cc27438d, type: 3}
+  player: {fileID: 0}
   spawnInterval: 2
   cameraMargin: 1
   minPlayerDistance: 6

@@ -397,6 +397,11 @@ MonoBehaviour:
   firePoint: {fileID: 6732264419387692874}
   fireRate: 1
   nextFireTime: 1.5
+  magazineSize: 7
+  currentAmmo: 0
+  reloadTime: 1.5
+  autoReload: 1
+  isReloading: 0
 --- !u!114 &8352658369215072512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeWeaponPrefab: {fileID: 678682623946954863}
-  attackCooldown: 0.5
+  attackCooldown: 1
   attackTimer: 0
   isAttacking: 0
 --- !u!114 &4463004267220301397
