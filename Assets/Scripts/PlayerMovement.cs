@@ -8,9 +8,15 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float facingDirection;
     
+    [SerializeField] Animator animator;
+    
+    SpriteRenderer spriteRenderer;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Movement()
@@ -38,17 +44,46 @@ public class PlayerMovement : MonoBehaviour
         {
             facingDirection = 0f; 
         }
+        
+        if(y > 0)
+        {
+            //transform.eulerAngles = new Vector3(0, 0, 0f);
+            animator.SetBool("Walk up", true);
+            animator.SetBool("Walk down", false);
+        }
+        else if(y < 0)
+        {
+            //transform.eulerAngles = new Vector3(0, 180, 0f);
+            animator.SetBool("Walk down", true);
+            animator.SetBool("Walk up", false);
+        }
+        else
+        {
+            animator.SetBool("Walk up", false);
+            animator.SetBool("Walk down", false);
+        }
 
         if (facingDirection == 1)
         {
-            transform.eulerAngles = new Vector3(0, 0, -90f);
+            //transform.eulerAngles = new Vector3(0, 0, 0f);
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walk left", false);
+            animator.SetBool("Walk right", true);
         }
-        
-        else if (facingDirection == -1)
+        else if (facingDirection == 0)
         {
-            transform.eulerAngles = new Vector3(0, 180, -90f);
+            animator.SetBool("Walk right", false);
+            animator.SetBool("Walk left", false);
+            animator.SetBool("Idle", true);
         }
         
+        if (facingDirection == -1)
+        {
+            //transform.eulerAngles = new Vector3(0, 180, 0f);
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walk right", false);
+            animator.SetBool("Walk left", true);
+        }
     }
 
     void Sprint()
