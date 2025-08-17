@@ -1,5 +1,5 @@
 using System;
-using OpenCover.Framework.Model;
+//using OpenCover.Framework.Model;
 using TMPro;
 using UnityEngine;
 using System.IO;
@@ -12,17 +12,23 @@ public class Score : MonoBehaviour
     private int coinLayer;
     [SerializeField] TextMeshProUGUI scoreText;
     
+    [SerializeField] private AudioSource coinCollectAudio;
+    
     private void Start()
     {
         coinLayer = LayerMask.NameToLayer("Coin");
         scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
 
-        
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            coinCollectAudio = GameObject.Find("Coin Collect Audio").GetComponent<AudioSource>();
+        }
     }
+
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             LoadScore();
         }
@@ -36,8 +42,9 @@ public class Score : MonoBehaviour
             if (coin != null)
             {
                 Debug.Log("Collected " + coin.coinValue + " coins");
+                coinCollectAudio.Play();
                 score += coin.coinValue;
-                scoreText.text = "Score: " + score;
+                scoreText.text = "$ : " + score;
                 Destroy(other.gameObject);
             }
         }
@@ -59,7 +66,7 @@ public class Score : MonoBehaviour
         ScoreData data = JsonUtility.FromJson<ScoreData>(json);
         
         score = data.score;
-        scoreText.text = "Score: " + score;
+        scoreText.text = "$ : " + score;
     }
 
     private void OnDestroy()

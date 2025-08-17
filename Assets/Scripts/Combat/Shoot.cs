@@ -11,8 +11,8 @@ public class Shoot : MonoBehaviour
     [SerializeField] float nextFireTime = 0f;
     Vector2 shootDirection;
 
-    [SerializeField] private int magazineSize;
-    [SerializeField] private int currentAmmo;
+    [SerializeField] public int magazineSize;
+    [SerializeField] public int currentAmmo;
     [SerializeField] private float reloadTime = 1.5f;
     [SerializeField] private bool autoReload = true;
     [SerializeField] private bool isReloading = false;
@@ -20,11 +20,14 @@ public class Shoot : MonoBehaviour
 
     private int ammoLayer;
     
-    [SerializeField] TextMeshProUGUI currentAmmoText;
-    [SerializeField] TextMeshProUGUI magazineSizeText;
+    [SerializeField] public TextMeshProUGUI currentAmmoText;
+    [SerializeField] public TextMeshProUGUI magazineSizeText;
 
     [SerializeField] private Texture2D crosshair;
 
+    [SerializeField] private AudioSource gunShootAudio;
+    [SerializeField] private AudioSource dryGunShootAudio;
+    [SerializeField] private AudioSource ammoCollectAudio;
 
     private void Start()
     {
@@ -39,6 +42,10 @@ public class Shoot : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        
+        gunShootAudio = GameObject.Find("FireAudio").GetComponent<AudioSource>();
+        dryGunShootAudio = GameObject.Find("Dry Fire Audio").GetComponent<AudioSource>();
+        ammoCollectAudio = GameObject.Find("Ammo Collect Audio").GetComponent<AudioSource>();
     }
     
 
@@ -48,13 +55,21 @@ public class Shoot : MonoBehaviour
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg - 90f;
         firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime)
         {
             if (currentAmmo <= 0)
             {
+                Debug.Log("No Ammo");
+                dryGunShootAudio.Play();
                 return;
             }
+            
             nextFireTime = Time.time + 1f / fireRate;
+            if (currentAmmo > 0)
+            {
+                gunShootAudio.Play();
+            }
+          
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             currentAmmo--;
             currentAmmoText.text = currentAmmo.ToString();
@@ -72,7 +87,7 @@ public class Shoot : MonoBehaviour
     {
         if (other.gameObject.layer == ammoLayer && isCollectable)
         {
-            Debug.Log("destoryeddddddddddddddddd");
+            ammoCollectAudio.Play();
             currentAmmo++;
             currentAmmoText.text = currentAmmo.ToString();
             Destroy(other.gameObject);

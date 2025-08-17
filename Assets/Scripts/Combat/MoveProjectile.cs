@@ -9,6 +9,8 @@ public class MoveProjectile : MonoBehaviour
     
     int wallLayer;
     int enemyLayer;
+    
+    [SerializeField] Animator enemyAnimator;
 
     private void Start()
     {
@@ -31,6 +33,7 @@ public class MoveProjectile : MonoBehaviour
         if (other.gameObject.layer == enemyLayer)
         {
             Debug.Log("Projectile hit an enemy");
+            other.gameObject.GetComponent<Animator>().SetTrigger("Hit");
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {

@@ -54,7 +54,6 @@ public class RoomGenerate : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"{gameObject.name} - Start called");
         InitializeRoomGrid();
         print(TargetTileCount());
 
@@ -94,11 +93,8 @@ public class RoomGenerate : MonoBehaviour
 
     void InitializeRoomGrid()
     {
-        Debug.Log($"{gameObject.name} - Initializing Room Grid");
-
         if (width <= 0 || height <= 0)
         {
-            Debug.LogError($"{gameObject.name} - Invalid grid dimensions: width={width}, height={height}");
             return;
         }
 
@@ -116,7 +112,6 @@ public class RoomGenerate : MonoBehaviour
 
         if (spawnLocation.x < 0 || spawnLocation.x >= width || spawnLocation.y < 0 || spawnLocation.y >= height)
         {
-            Debug.LogError($"{gameObject.name} - Invalid spawn location: {spawnLocation}");
             return;
         }
 
@@ -134,7 +129,6 @@ public class RoomGenerate : MonoBehaviour
 
     IEnumerator GenerateFloor()
     {
-        Debug.Log($"{gameObject.name} - Generating Floor");
         while ((float)tileCount / (float)grid.Length < fillPercent && iterations < maxIterations)
         {
             iterations++;
@@ -145,7 +139,6 @@ public class RoomGenerate : MonoBehaviour
 
                 if (currentPosition.x < 0 || currentPosition.x >= width || currentPosition.y < 0 || currentPosition.y >= height)
                 {
-                    Debug.LogError($"{gameObject.name} - Invalid room position: {currentPosition}");
                     continue;
                 }
 
@@ -372,17 +365,6 @@ public class RoomGenerate : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            /*tilemap.ClearAllTiles();
-            tileCount = 0;
-            SpawnPlayer();
-            InitializeRoomGrid();*/
-
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.buildIndex);
-        }
-
         LoadingPercentage();
     }
 }

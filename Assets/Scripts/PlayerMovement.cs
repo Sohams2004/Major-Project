@@ -10,13 +10,10 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] Animator animator;
     
-    SpriteRenderer spriteRenderer;
-    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Movement()
@@ -25,12 +22,6 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(x, y);
         rb.linearVelocity = movement * moveSpeed;
-
-        /*if (movement != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90f;
-            rb.rotation = angle;
-        }*/
         
         if(x > 0)
         {
@@ -47,13 +38,11 @@ public class PlayerMovement : MonoBehaviour
         
         if(y > 0)
         {
-            //transform.eulerAngles = new Vector3(0, 0, 0f);
             animator.SetBool("Walk up", true);
             animator.SetBool("Walk down", false);
         }
         else if(y < 0)
         {
-            //transform.eulerAngles = new Vector3(0, 180, 0f);
             animator.SetBool("Walk down", true);
             animator.SetBool("Walk up", false);
         }
@@ -65,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (facingDirection == 1)
         {
-            //transform.eulerAngles = new Vector3(0, 0, 0f);
             animator.SetBool("Idle", false);
             animator.SetBool("Walk left", false);
             animator.SetBool("Walk right", true);
@@ -79,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (facingDirection == -1)
         {
-            //transform.eulerAngles = new Vector3(0, 180, 0f);
             animator.SetBool("Idle", false);
             animator.SetBool("Walk right", false);
             animator.SetBool("Walk left", true);
@@ -99,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Not sprinting");
             moveSpeed -= 2;
         }
-
     }
 
     private void FixedUpdate()

@@ -19,7 +19,7 @@ public class EnemySpawn : MonoBehaviour
     
     RoomGenerate roomGenerate;
 
-    private Coroutine enemyCoroutine;
+    public Coroutine enemyCoroutine;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemy()
+    public IEnumerator SpawnEnemy()
     {
         Debug.Log("Coroutine started");
         var wait = new WaitForSeconds(spawnInterval);
@@ -90,30 +90,22 @@ public class EnemySpawn : MonoBehaviour
         return new Bounds(camera.transform.position, size);
     }
 
-
-    /*IEnumerator SpawnEnemy()
+    void IncreaseSpawnRate()
     {
-        Debug.Log("Coroutine started");
-        WaitForSeconds wait = new WaitForSeconds(spawnInterval);
-
-        while (isSpawning)
+        spawnInterval -= Time.deltaTime * 0.01f;
+        
+        if(spawnInterval <= 2f)
         {
-            yield return wait;
-            if (currentEnemyCount < 5) 
-            {
-                int randomIndex = Random.Range(0, enemyPrefab.Length);
-                int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
-                Instantiate(enemyPrefab[randomIndex], spawnPoints[spawnPointIndex].position, Quaternion.identity);
-                currentEnemyCount++;
-                nextSpawnTime = Time.time + spawnInterval;
-            }
+            spawnInterval = 2f; 
         }
-    }*/
+    }
 
 
     void Update()
     {
-        
+        if (currentEnemyCount >= 5)
+        {
+            IncreaseSpawnRate();
+        }
     }
 }

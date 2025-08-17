@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D enemyRb;
 
     [SerializeField] private GameObject[] loot;
+    
+    [SerializeField] private AudioSource playerDieAudio;
 
     private void Start()
     {
@@ -60,13 +63,20 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Enemy collided with Player");
+            playerDieAudio = GameObject.Find("PlayerDieAudio").GetComponent<AudioSource>();
+            playerDieAudio.Play();
             Destroy(other.gameObject);
             Time.timeScale = 0;
+            SceneChange();
         }
     }
     
+    void SceneChange()
+    {
+        SceneManager.LoadScene(1);
+    }
     
-
+    
     void DropLoot()
     {
         int randomLoot = Random.Range(0, loot.Length);

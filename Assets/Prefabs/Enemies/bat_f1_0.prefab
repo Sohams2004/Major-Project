@@ -131,7 +131,7 @@ MonoBehaviour:
   rotateSpeed: 19.04
   loot:
   - {fileID: 1826583063837934041, guid: 3e066d1335726c44982c8a3dca46e485, type: 3}
-  - {fileID: 1458414009317462158, guid: c479746650109f247b56a6e969f509d2, type: 3}
+  - {fileID: 5215896713324378404, guid: 1d8fa1851a122e043b433ee09d68cc2e, type: 3}
 --- !u!60 &3111491202261489417
 PolygonCollider2D:
   m_ObjectHideFlags: 0

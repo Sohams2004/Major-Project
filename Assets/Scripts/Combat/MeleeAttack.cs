@@ -15,10 +15,12 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] Animator enemyAnimator;
     
     [SerializeField] LayerMask Enemy;
+    
+    [SerializeField] AudioSource meleeAudioSource;
 
-    private void Start()
+    private void Awake()
     {
-        //meleeWeaponPrefab.SetActive(false);
+        meleeAudioSource = GameObject.Find("MeleeWeaponPrefab").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -28,6 +30,7 @@ public class MeleeAttack : MonoBehaviour
         {
             isAttacking = true;
             animator.SetTrigger("Attack");
+            meleeAudioSource.Play();
             Attack();
             attackTimer = attackCooldown;
         }
